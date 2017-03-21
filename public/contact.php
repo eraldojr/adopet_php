@@ -1,4 +1,6 @@
-<?php  ?>
+<?php
+session_start();
+  ?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -35,7 +37,11 @@
               <li><a href="about.php">Sobre</a></li>
               <li><a href="adopt.php" >Adote</a></li>
               <li class="active"><a href="contact.php" >Contato</a></li>
-              <li><a href="#" data-toggle="modal" data-target="#modalLogin">Login</a></li>
+              <?php  if($_SESSION['active']){?>
+                <li><a href="#">Sair</a></li>
+              <?php }else{ ?>
+                <li><a href="#" data-toggle="modal" data-target="#modalLogin">Entrar</a></li>
+              <?php } ?>
             </ul>
           </div>
         </div>

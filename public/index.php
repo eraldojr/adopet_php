@@ -1,4 +1,36 @@
 <?php
+session_start();
+require_once "../entity/User.php";
+require_once "../DB/UserDAO.php";
+
+if (isset($_SESSION['LAST_ACTIVITY']) && (time() - $_SESSION['LAST_ACTIVITY'] > 60)) {
+    session_unset();
+    session_destroy();
+}else{
+  $_SESSION['LAST_ACTIVITY'] = time();
+}
+if( !empty( $_POST ) && !($_SESSION['active'])){
+  if($_SERVER['REQUEST_METHOD'] == 'POST'){
+    $email = $_POST['email'];
+    $pass = $_POST['pass'];
+    $dao = new UserDAO();
+    $user = new User();
+    if($dao->login($email,$pass)){
+      $_SESSION['active'] = true;
+      $_SESSION['LAST_ACTIVITY'] = time();
+      $_POST="";
+    }else{
+      $_SESSION['active'] = false;
+      $_POST="";
+    }
+  }
+}
+function logout(){
+  session_unset();
+  session_destroy();
+  header("Refresh:0");
+}
+
 
 ?>
 <!DOCTYPE html>
@@ -36,8 +68,11 @@
             <li><a href="about.php">Sobre</a></li>
             <li><a href="adopt.php">Adote</a></li>
             <li><a href="contact.php">Contato</a></li>
-            <!-- <li><a href="#" onclick="modalLogin()">Login</a></li> -->
-            <li><a href="#" data-toggle="modal" data-target="#modalLogin">Login</a></li>
+            <?php  if($_SESSION['active']){?>
+              <li><a href="#">Sair</a></li>
+            <?php }else{ ?>
+              <li><a href="#" data-toggle="modal" data-target="#modalLogin">Entrar</a></li>
+            <?php } ?>
           </ul>
         </div>
       </div>
@@ -94,7 +129,7 @@
       <div class="container">
         <div class="row">
           <div class="col-md-12 text-center">
-            <img id="Logo1080x1920" class="img-responsive"src="../img/Logo-1080x1920.png" alt="Logo Adopet" width="900px">
+              <img id="Logo1080x1920" class="img-responsive"src="../img/Logo-1080x1920.png" alt="Logo Adopet" width="900px">
           </div>
           <div class="row">
             <div class="col-md-12 text-center">
