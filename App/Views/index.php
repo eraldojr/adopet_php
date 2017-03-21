@@ -1,9 +1,10 @@
 <?php
-session_start();
-require_once "../entity/User.php";
-require_once "../DB/UserDAO.php";
+require_once "../Model/UserDAO.php";
+require_once "../Model/User.php";
 
-if (isset($_SESSION['LAST_ACTIVITY']) && (time() - $_SESSION['LAST_ACTIVITY'] > 60)) {
+session_start();
+
+if (isset($_SESSION['LAST_ACTIVITY']) && (time() - $_SESSION['LAST_ACTIVITY'] > 2)) {
     session_unset();
     session_destroy();
 }else{
@@ -25,12 +26,17 @@ if( !empty( $_POST ) && !($_SESSION['active'])){
     }
   }
 }
+
 function logout(){
   session_unset();
   session_destroy();
   header("Refresh:0");
 }
 
+$dao = new UserDAO();
+$user = new User();
+$user->setName("Eraldo")->setEmail("eraldo@jrfx.com")->setPhone("(019)999999999")->setPass("123");
+$dao->insert($user);
 
 ?>
 <!DOCTYPE html>
@@ -39,8 +45,8 @@ function logout(){
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="../css/bootstrap.min.css" rel="stylesheet" type="text/css">
-    <link href="../css/style.css" rel="stylesheet" type="text/css">
+    <link href="../../css/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <link href="../../css/style.css" rel="stylesheet" type="text/css">
     <title>Adopet</title>
 
     <!--[if lt IE 9]>
@@ -53,7 +59,7 @@ function logout(){
     <nav class="navbar navbar-default">
       <div class="container-fluid">
         <div class="navbar-header">
-          <a href="index.php" class="navbar-brand"><img src="../img/logo-mini.png" height="50px" alt="Logo Adopet"></a>
+          <a href="index.php" class="navbar-brand"><img src="../../img/logo-mini.png" height="50px" alt="Logo Adopet"></a>
           <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse" aria-expanded="false">
             <span class="sr-only">Toggle navigation</span>
             <span class="icon-bar"></span>
@@ -85,7 +91,7 @@ function logout(){
             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
             <div class="row">
               <div class="col-md-8 col-md-offset-2">
-                <img src="../img/logo-md.png" class="img-responsive"alt="Logo Adopet" height="100px">
+                <img src="../../img/logo-md.png" class="img-responsive"alt="Logo Adopet" height="100px">
               </div>
             </div>
             <div class="row">
@@ -129,7 +135,7 @@ function logout(){
       <div class="container">
         <div class="row">
           <div class="col-md-12 text-center">
-              <img id="Logo1080x1920" class="img-responsive"src="../img/Logo-1080x1920.png" alt="Logo Adopet" width="900px">
+              <img id="Logo1080x1920" class="img-responsive"src="../../img/Logo-1080x1920.png" alt="Logo Adopet" width="900px">
           </div>
           <div class="row">
             <div class="col-md-12 text-center">
@@ -143,7 +149,7 @@ function logout(){
 
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <script src="../js/bootstrap.min.js"></script>
-    <script src="../js/script.js"></script>
+    <script src="../../js/bootstrap.min.js"></script>
+    <script src="../../js/script.js"></script>
   </body>
 </html>
