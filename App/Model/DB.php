@@ -1,5 +1,5 @@
 <?php
-
+namespace App\Model;
 class DB{
 
   private $server = "localhost";
@@ -10,7 +10,7 @@ class DB{
 
 
   public function __construct(){
-    @$this->db_Conn = new mysqli($this->server,$this->user,$this->pass,$this->dbname);
+    @$this->db_Conn = new \mysqli($this->server,$this->user,$this->pass,$this->dbname);
     if(mysqli_connect_errno()){
       echo "Failed to connect to MySQL (".$this->db_Conn->connect_errno.")".$this->db_Conn->connect_error;
     }

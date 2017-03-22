@@ -1,6 +1,6 @@
 <?php
+require '../../vendor/autoload.php';
 
-require_once "../../vendor/autoload.php";
 
 session_start();
 
@@ -14,8 +14,8 @@ if( !empty( $_POST ) && !($_SESSION['active'])){
   if($_SERVER['REQUEST_METHOD'] == 'POST'){
     $email = $_POST['email'];
     $pass = $_POST['pass'];
-    $dao = new Model\UserDAO();
-    $user = new Model\User();
+    $dao = new App\Model\UserDAO;
+    $user = new App\Model\User;
     if($dao->login($email,$pass)){
       $_SESSION['active'] = true;
       $_SESSION['LAST_ACTIVITY'] = time();
@@ -33,10 +33,10 @@ function logout(){
   header("Refresh:0");
 }
 
-$dao = new \Model\UserDAO();
-$user = new Model\User();
+$dao = new App\Model\UserDAO();
+$user = new App\Model\User();
 $user->setName("Eraldo")->setEmail("eraldo@jrfx.com")->setPhone("(019)999999999")->setPass("123");
-$dao->insert($user);
+//$dao->insert($user);
 
 ?>
 <!DOCTYPE html>
