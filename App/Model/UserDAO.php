@@ -1,6 +1,5 @@
 <?php
-require_once "DB.php";
-require_once "User.php";
+namespace Model;
 class UserDAO{
 
   private $db;
@@ -71,3 +70,4 @@ private function hashPass($pass){
   }
 
 }
+?>

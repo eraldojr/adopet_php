@@ -1,0 +1,19 @@
+{
+    "name": "jrfx/adopet",
+    "description": "Adopet Project",
+    "authors": [
+        {
+            "name": "Junior",
+            "email": "eraldogoncalvesjr@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+      "php": ">=5.6"
+    },
+    "autoload":{
+      "psr-4":{
+        "Model\\":"/App/Model"
+      }
+    }
+}
