@@ -1,5 +1,5 @@
 <?php
-namespace App\Model;
+
 class DB{
 
   private $server = "localhost";

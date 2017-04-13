@@ -2,11 +2,20 @@
 namespace App\Model;
 class User
 {
+  private $id;
   private $name;
   private $email;
   private $pass;
   private $phone;
 
+
+  public function getID(){
+    return $this->id;
+  }
+  public function setName($id){
+    $this->id = $id;
+    return $this;
+  }
   public function getName(){
     return $this->name;
   }
