@@ -1,0 +1,23 @@
+{
+    "name": "Adopet/Adopet",
+    "description": "Adopet Project",
+    "authors": [
+        {
+            "name": "Junior",
+            "email": "eraldogoncalvesjr@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+      "php": ">=7.1"
+    },
+    "require-dev": {
+    "fzaninotto/faker": ">= 1.6.0"
+
+    },
+    "autoload":{
+      "psr-4":{
+        "adopet\\":"src/"
+      }
+    }
+}
