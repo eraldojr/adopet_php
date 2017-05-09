@@ -1,3 +1,10 @@
+<?php
+$user = null;
+if(isset($this->session)){
+  $user = $this->session->user;
+}
+
+ ?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -19,7 +26,7 @@
     <nav class="navbar navbar-default">
       <div class="container-fluid">
         <div class="navbar-header">
-          <a href="#" class="navbar-brand"><img src="/img/logo-mini.png" height="50px" alt="Logo Adopet"></a>
+          <a href="/" class="navbar-brand"><img src="/img/logo-mini.png" height="50px" alt="Logo Adopet"></a>
           <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse" aria-expanded="false">
             <span class="sr-only">Toggle navigation</span>
             <span class="icon-bar"></span>
@@ -30,11 +37,15 @@
 
         <div class="collapse navbar-collapse navbar-right" id="navbar-collapse">
           <ul class="nav navbar-nav">
-            <li><a href="#">Início</a></li>
+            <li><a href="/">Início</a></li>
             <li><a href="#">Sobre</a></li>
             <li><a href="#">Adote</a></li>
             <li><a href="#">Contato</a></li>
-              <li><a href="#" data-toggle="modal" data-target="#modalLogin">Entrar</a></li>
+            <?php if($user == null ):?>
+            <li><a href="#" data-toggle="modal" data-target="#modalLogin">Entrar</a></li>
+            <?php else:?>
+            <li><a href="/logout">Olá, <?php echo $user->name ?></a></li>
+            <?php endif?>
           </ul>
         </div>
       </div>
@@ -47,7 +58,7 @@
             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
             <div class="row">
               <div class="col-md-8 col-md-offset-2">
-                <img src="img/logo-md.png" class="img-responsive" alt="Logo Adopet" height="100px">
+                <img src="/img/logo-md.png" class="img-responsive" alt="Logo Adopet" height="100px">
               </div>
             </div>
             <div class="row">
@@ -57,7 +68,7 @@
             </div>
           </div>
           <div class="modal-body">
-            <form class="form-horizontal" id="formLogin" action="index.php" method="post">
+            <form class="form-horizontal" id="formLogin" action="/login" method="post">
               <div class="form-group">
                 <div class="row col-md-8 col-md-offset-2">
                   <input type="email" class="form-control" id="email" name="email" value="" placeholder="Email" required="true" title="Digite seu email">
@@ -70,10 +81,10 @@
               </div>
               <div class="row">
                 <div class="col-md-12 text-center">
-                  <a href="#">Esqueci minha senha</a>
+                  <a href="/recuperar-senha">Esqueci minha senha</a>
                 </div>
                 <div class="col-md-12 text-center">
-                  <a href="#">Ainda não é cadastrado?</a>
+                  <a href="/registro">Ainda não é cadastrado?</a>
                 </div>
               </div>
             </form>
@@ -87,12 +98,3 @@
     </div><!-- /.modal -->
     <!--End Modal Login -->
     </header>
-    <main>
-      {% block content %}{% endblock %}
-    </main>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <script src="/js/bootstrap.min.js"></script>
-    <script src="/js/script.js"></script>
-
-  </body>
-</html>
