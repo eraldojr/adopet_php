@@ -52,6 +52,22 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 $route['default_controller'] = 'mainController';
 $route['404_override'] = 'ErrorPages';
 $route['translate_uri_dashes'] = FALSE;
+//AuthController
 $route['login'] = 'authController/login/';
 $route['logout'] = 'authController/logout/';
-$route['registro'] = 'authController/registro/';
+$route['registro'] = 'authController/create/';
+//UserController
+$route['minha-pagina'] = 'userController/personalPage/';
+$route['meus-dados'] = 'userController/personalData/';
+$route['atualizar-cadastro'] = 'userController/update/';
+//MainController
+$route['home'] = 'mainController/index/';
+$route['contato'] = 'mainController/contact/';
+$route['sobre'] = 'mainController/about/';
+//PetsController
+$route['meus-pets'] = 'petsController/getByUser/';
+$route['todos-pets'] = 'petsController/getAll/';
+$route['novo-pet'] = 'petsController/create/';
+$route['pet/(:num)/info'] = 'petsController/getByID/$1';
+$route['pet/(:num)/alterar'] = 'petsController/update/$1';
+$route['pet/(:num)/excluir'] = 'petsController/delete/$1';

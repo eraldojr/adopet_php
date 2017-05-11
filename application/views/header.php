@@ -3,7 +3,6 @@ $user = null;
 if(isset($this->session)){
   $user = $this->session->user;
 }
-
  ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -13,6 +12,7 @@ if(isset($this->session)){
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link  rel="stylesheet" href="/css/bootstrap.min.css">
     <link  rel="stylesheet" href="/css/style.css">
+    <link  rel="stylesheet" href="/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
 
     <title>Adopet</title>
 
@@ -38,13 +38,23 @@ if(isset($this->session)){
         <div class="collapse navbar-collapse navbar-right" id="navbar-collapse">
           <ul class="nav navbar-nav">
             <li><a href="/">Início</a></li>
-            <li><a href="#">Sobre</a></li>
-            <li><a href="#">Adote</a></li>
-            <li><a href="#">Contato</a></li>
+            <li><a href="/sobre">Sobre</a></li>
+            <li><a href="/adote">Adote</a></li>
+            <li><a href="/contato">Contato</a></li>
             <?php if($user == null ):?>
-            <li><a href="#" data-toggle="modal" data-target="#modalLogin">Entrar</a></li>
+              <li><a href="#" data-toggle="modal" data-target="#modalLogin">Entrar</a></li>
             <?php else:?>
-            <li><a href="/logout">Olá, <?php echo $user->name ?></a></li>
+
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                  Olá, <?php echo $user->name ?> <span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                  <li><a href="/minha-pagina"><i class="fa fa-user-circle-o  fa-lg"></i> Minha conta</a></li>
+                  <li><a href="/meus-pets"><i class="fa fa-th fa-lg"></i> Meus pets</a></li>
+                  <li role="separator" class="divider"></li>
+                  <li><a href="logout"><i class="fa fa-sign-out fa-lg"></i> Sair</a></li>
+                </ul>
+              </li>
             <?php endif?>
           </ul>
         </div>

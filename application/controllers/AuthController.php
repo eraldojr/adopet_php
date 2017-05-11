@@ -8,10 +8,9 @@ class AuthController extends CI_Controller
       $this->load->library('session');
       $this->load->model('userModel');
       $this->load->helper('url');
-
   }
 
-  public function registro(){
+  public function create(){
     $this->load->library('form_validation');
 
     $this->form_validation->set_rules('name', 'Nome', 'required');
@@ -40,20 +39,18 @@ class AuthController extends CI_Controller
 
       if ($this->form_validation->run() === FALSE) {
           $this->load->view('header');
-          $this->load->view('main');
+          $this->load->view('main/main');
           $this->load->view('footer');
       } else {
           $user = $this->userModel->getByEmailAndPassword();
           if($user){
-            //$userData = ['id' => $user->id, 'name' => $user->name, 'email' => $user->email];
             $this->session->set_userdata(['user' => $user]);
-            $this->load->view('header');
-            $this->load->view('main');
-            $this->load->view('footer');
+            //redirect(base_url('userController/personalInfo'));
+            redirect(base_url('meus-dados'));
             return;
           }
           $this->load->view('header');
-          $this->load->view('main');
+          $this->load->view('main/main');
           $this->load->view('footer');
           return;
       }

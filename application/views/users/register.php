@@ -6,7 +6,7 @@
 <div class="container-fluid">
   <div class="row">
     <div class="col-md-8 col-sm-1 col-md-offset-2">
-      <form class="form" action="/authController/registro" method="post">
+      <form class="form" action="/authController/create" method="post">
         <div class="form-group">
           <label for="name">Nome</label>
           <input type="text" name="name" value="" class="form-control" placeholder="Nome" required="required">
