@@ -12,11 +12,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 |
 */
 
-/*$hook['post_controller_constructor'] = [
+$hook['post_controller_constructor'] = [
 
   'class' => 'AuthHook',
   'function' => 'check',
   'filename' => 'AuthHook.php',
   'filepath' => 'hooks'
 ];
-*/

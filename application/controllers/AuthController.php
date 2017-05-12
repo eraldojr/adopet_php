@@ -10,6 +10,12 @@ class AuthController extends CI_Controller
       $this->load->helper('url');
   }
 
+  public function notLogged(){
+    $this->load->view('header');
+    $this->load->view('errors/cli/notLogged');
+    $this->load->view('footer');
+
+  }
   public function create(){
     $this->load->library('form_validation');
 
@@ -45,13 +51,10 @@ class AuthController extends CI_Controller
           $user = $this->userModel->getByEmailAndPassword();
           if($user){
             $this->session->set_userdata(['user' => $user]);
-            //redirect(base_url('userController/personalInfo'));
-            redirect(base_url('meus-dados'));
+            redirect(base_url('minha-pagina'));
             return;
           }
-          $this->load->view('header');
-          $this->load->view('main/main');
-          $this->load->view('footer');
+          redirect(base_url('/'));
           return;
       }
   }
@@ -59,7 +62,7 @@ class AuthController extends CI_Controller
   public function logout()
   {
       $this->session->unset_userdata('user');
-      redirect('/login');
+      redirect(base_url('/'));
       die();
   }
 

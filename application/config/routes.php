@@ -56,12 +56,13 @@ $route['translate_uri_dashes'] = FALSE;
 $route['login'] = 'authController/login/';
 $route['logout'] = 'authController/logout/';
 $route['registro'] = 'authController/create/';
+$route['nao-logado'] = 'authController/notLogged/';
 //UserController
 $route['minha-pagina'] = 'userController/personalPage/';
 $route['meus-dados'] = 'userController/personalData/';
 $route['atualizar-cadastro'] = 'userController/update/';
 //MainController
-$route['home'] = 'mainController/index/';
+$route['/'] = 'mainController/index/';
 $route['contato'] = 'mainController/contact/';
 $route['sobre'] = 'mainController/about/';
 //PetsController
