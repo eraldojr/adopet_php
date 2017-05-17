@@ -10,8 +10,9 @@ class AuthHook
     'registro',
     'login',
     'logout',
-    'nao-logado'
-
+    'nao-logado',
+    'adote',
+    'pet/(:num)/mostrar'
   ];
 
   public function check()
@@ -26,13 +27,18 @@ class AuthHook
 
     $user = $CI->session->user ?? null;
     $route = $CI->uri->segment(1);
-
-
-
-
-    if(!$user and !in_array($route, $this->controller))
+    $action = $CI->uri->segment(3);
+    if(!$user and $this->verify($route, $action))
     {
       redirect(base_url('/nao-logado'));
+    }
+  }
+  private function verify($route){
+    if(!in_array($route, $this->controller)
+    || $route !== "pet" || $action !== "mostrar"){
+      return false;
+    }else{
+      return true;
     }
   }
 }

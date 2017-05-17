@@ -11,8 +11,10 @@ if(isset($this->session)){
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link  rel="stylesheet" href="/css/bootstrap.min.css">
+    <!--<link  rel="stylesheet" href="/css/materialize.min.css">-->
     <link  rel="stylesheet" href="/css/style.css">
     <link  rel="stylesheet" href="/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+
 
     <title>Adopet</title>
 
@@ -50,9 +52,10 @@ if(isset($this->session)){
                   Olá, <?php echo $user->name ?> <span class="caret"></span></a>
                 <ul class="dropdown-menu">
                   <li><a href="/minha-pagina"><i class="fa fa-user-circle-o  fa-lg"></i> Minha conta</a></li>
-                  <li><a href="/meus-pets"><i class="fa fa-th fa-lg"></i> Meus pets</a></li>
+                  <li><a href="/meus-pets"><i class="fa fa-paw fa-lg"></i> Meus pets</a></li>
+                  <li><a href="/meus-dados"><i class="fa  fa-vcard-o (alias) fa-lg"></i> Meus dados</a></li>
                   <li role="separator" class="divider"></li>
-                  <li><a href="logout"><i class="fa fa-sign-out fa-lg"></i> Sair</a></li>
+                  <li><a href="/logout"><i class="fa fa-sign-out fa-lg"></i> Sair</a></li>
                 </ul>
               </li>
             <?php endif?>

@@ -52,23 +52,27 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 $route['default_controller'] = 'mainController';
 $route['404_override'] = 'ErrorPages';
 $route['translate_uri_dashes'] = FALSE;
-//AuthController
-$route['login'] = 'authController/login/';
-$route['logout'] = 'authController/logout/';
-$route['registro'] = 'authController/create/';
-$route['nao-logado'] = 'authController/notLogged/';
 //UserController
+$route['login'] = 'userController/login/';
+$route['logout'] = 'userController/logout/';
+$route['registro'] = 'userController/create/';
+$route['nao-logado'] = 'userController/notLogged/';
 $route['minha-pagina'] = 'userController/personalPage/';
 $route['meus-dados'] = 'userController/personalData/';
 $route['atualizar-cadastro'] = 'userController/update/';
+$route['atualizar-foto'] = 'userController/changePhoto/';
 //MainController
 $route['/'] = 'mainController/index/';
+$route['upload'] = 'uploadController/index/';
+$route['do_upload'] = 'uploadController/do_upload/';
 $route['contato'] = 'mainController/contact/';
 $route['sobre'] = 'mainController/about/';
+$route['adote'] = 'mainController/getAllPets/';
+$route['pet/(:num)/mostrar'] = 'mainController/getPetByID/$1';
 //PetsController
 $route['meus-pets'] = 'petsController/getByUser/';
-$route['todos-pets'] = 'petsController/getAll/';
 $route['novo-pet'] = 'petsController/create/';
-$route['pet/(:num)/info'] = 'petsController/getByID/$1';
+$route['pet/(:num)/detalhes'] = 'petsController/getByID/$1';
 $route['pet/(:num)/alterar'] = 'petsController/update/$1';
 $route['pet/(:num)/excluir'] = 'petsController/delete/$1';
+$route['pet/(:num)/adicionar-foto'] = 'petsController/uploadPhoto/$1';

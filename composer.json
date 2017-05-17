@@ -10,7 +10,8 @@
 			}
 	],
 	"require": {
-		"php": ">=7.1"
+		"php": ">=7.1",
+		"intervention/image": "2.3.13"
 	},
 	"require-dev": {
 		"mikey179/vfsStream": "1.1.*",

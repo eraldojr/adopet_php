@@ -12,21 +12,31 @@ class PetsController extends CI_Controller
 
   public function getByID($id)
   {
-    $this->petsModel->getByID($id);
+    $directory = FCPATH . 'uploads/pets/' . $id;
+    $data['directory_tree'] = scandir($directory);
+    $result = $this->petsModel->getByID($id);
+    $this->load->view('header');
+    $this->load->view('pets/pet-detail', ['pet' => $result, 'data'=>$data]);
+    $this->load->view('footer');
   }
 
   public function getByUser()
   {
     $result = $this->petsModel->getByUser();
+    foreach ($result as $pet) {
+      $directory = FCPATH . 'uploads/pets/' . $pet->id;
+      $data[$pet->id]= scandir($directory);
+    }
     $this->load->view('header');
-    $this->load->view('pets/my-pets', ['pets' => $result]);
+    $this->load->view('pets/my-pets', ['pets' => $result, 'data'=>$data]);
     $this->load->view('footer');
 
   }
 
   public function getAll()
   {
-    $this->petsModel->getAll();
+
+
   }
 
   public function create()
@@ -46,19 +56,27 @@ class PetsController extends CI_Controller
       $this->load->view('footer');
     } else {
       $this->petsModel->create();
-      redirect('/meus-pets');
-      die();
+     redirect('/meus-pets');
+     die();
     }
 
   }
 
   public function delete($id)
   {
+
     $this->petsModel->delete($id);
-    redirect(base_url("/meus-pets"));
+    $result = $this->petsModel->getByUser();
+    redirect(base_url('/meus-pets'));
   }
 
-  public function update($id = null)
+  public function uploadPhoto($id)
+  {
+    $this->petsModel->uploadPhoto($id);
+    redirect('/pet/' . $id . '/detalhes');
+  }
+
+  public function update($id)
   {
     $this->load->library('form_validation');
     $this->form_validation->set_rules('name', 'Nome', 'required');

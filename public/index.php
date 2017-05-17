@@ -314,4 +314,7 @@ switch (ENVIRONMENT)
  *
  * And away we go...
  */
+
+//require FCPATH . '../vendor/autoload.php';
+//include_once  './vendor/autoload.php';
 require_once BASEPATH.'core/CodeIgniter.php';

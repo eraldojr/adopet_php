@@ -2,7 +2,7 @@
  ?>
  <div class="row">
    <div class="col-md-8 col-md-offset-2 ">
-     <h3>Alterar Pet</h3>
+     <h3>ALTERAR PET</h3>
     <form class="form" action="/pet/<?php echo $pet->id ?>/alterar" name="formPet" method="post">
       <div class="form-group ">
         <label for="name">Nome</label>
