@@ -28,17 +28,13 @@ class AuthHook
     $user = $CI->session->user ?? null;
     $route = $CI->uri->segment(1);
     $action = $CI->uri->segment(3);
-    if(!$user and $this->verify($route, $action))
+    if(!$user and !$this->verify($route, $action))
     {
-      redirect(base_url('/nao-logado'));
+      redirect(base_url('nao-logado'));
     }
   }
   private function verify($route){
-    if(!in_array($route, $this->controller)
-    || $route !== "pet" || $action !== "mostrar"){
-      return false;
-    }else{
-      return true;
-    }
+    return ((in_array($route, $this->controller)) || ($route == "pet" && $action == "mostrar"));
   }
+
 }

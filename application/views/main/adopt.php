@@ -17,7 +17,6 @@
                 <td width="100px  "><img src="<?php echo base_url('/uploads/pets/' . $pet->id . '/'  .  $data[$pet->id][2] ) ?>" class="center-block img-responsive img-thumbnail img-deco" width="100px" alt="Imagens do pet"></td>
                 <?php endif ?>
                 <td><p class="itemTable"><?= $pet->name; ?></p></td>
-                <td><p>...</p></td>
               </tr>
             <?php endforeach ?>
         <?php else: ?>

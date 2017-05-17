@@ -73,9 +73,19 @@ if (!isset($pet)) {
           </div>
         </div>
       </div>
-      <div class="form-group">
-        <label for="breed">Raça</label>
-        <input class="form-control" type="text" name="breed" placeholder="Raça" value="<?php echo $pet->breed ?>" readonly>
+      <div class="row">
+        <div class="col-md-6">
+          <div class="form-group">
+            <label for="breed">Raça</label>
+            <input class="form-control" type="text" name="breed" placeholder="Raça" value="<?php echo $pet->breed ?>" readonly>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <label for="gender">Sexo</label>
+            <input class="form-control" type="text" name="gender" placeholder="Sexo" value="<?php echo $pet->gender ?>" readonly>
+          </div>
+        </div>
       </div>
       <div class="form-group">
         <label for="description">Descrição</label>

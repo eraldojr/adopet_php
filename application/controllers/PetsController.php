@@ -33,12 +33,6 @@ class PetsController extends CI_Controller
 
   }
 
-  public function getAll()
-  {
-
-
-  }
-
   public function create()
   {
     $this->load->library('form_validation');

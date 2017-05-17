@@ -101,8 +101,8 @@ if (!isset($pet)) {
   <div class="row">
     <h2 class="text-center">Dados</h2>
     <hr>
-    <div class="col-md-6 col-md-offset-3">
-      <form class="form form-horizontal" action="/pet/<?php echo $pet->id ?>/alterar" method="post">
+    <div class="col-md-6 col-md-offset-3 panel panel-default">
+      <form  action="/pet/<?php echo $pet->id ?>/alterar" method="post">
         <div class="form-group">
           <label for="name">Nome</label>
           <input class="form-control" type="text" name="name" placeholder="Nome" value="<?php echo $pet->name ?>">
@@ -127,9 +127,19 @@ if (!isset($pet)) {
             </div>
           </div>
         </div>
-        <div class="form-group">
-          <label for="breed">Raça</label>
-          <input class="form-control" type="text" name="breed" placeholder="Raça" value="<?php echo $pet->breed ?>">
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="breed">Raça</label>
+              <input class="form-control" type="text" name="breed" placeholder="Raça" value="<?php echo $pet->breed ?>">
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="gender">Sexo</label>
+              <input class="form-control" type="text" name="gender" placeholder="Sexo" value="<?php echo $pet->gender ?>">
+            </div>
+          </div>
         </div>
         <div class="form-group">
           <label for="description">Descrição</label>
@@ -141,7 +151,10 @@ if (!isset($pet)) {
       </form>
       <div class="col-md-4">
         <button class="btn btn-block btn-danger" name="delete" data-toggle="modal" data-target="#modalDeletePet" >Excluir</button>
+        <div class="espaco">
       </div>
+
+    </div>
 
     </div>
   </div>

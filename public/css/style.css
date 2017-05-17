@@ -70,5 +70,20 @@ table{
   text-align: right;
   text-decoration: none;
   color: green;
-
+}
+.itemPersonalPage{
+  text-align: center;
+  text-decoration: none;
+  color: darkslategray;
+}
+.itemPersonalPage:hover{
+  color: darkgreen;
+  text-decoration: none;
+}
+.imgPets{
+  margin: 20px;
+    box-shadow: 1px 1px 15px gray, -1px -1px 15px gray;
+}
+ img.imgPets:hover{
+  width: 400px;
 }

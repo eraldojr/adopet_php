@@ -17,10 +17,11 @@ class PetsModel extends CI_Model
         'ownerID' => $this->session->user->id,
         'age' => $this->input->post('age'),
         'weight' => $this->input->post('weight'),
-        'breed' => $this->input->post('breed'),
-        'date' => date(DATE_ATOM),
         'postage' => $this->input->post('postage'),
-        'description' => $this->input->post('description')
+        'breed' => $this->input->post('breed'),
+        'gender' => $this->input->post('gender'),
+        'description' => $this->input->post('description'),
+        'date' => date(DATE_ATOM)
     ];
     $this->db->insert($this->tableName, $data);
     $id = $this->db->insert_id();
@@ -33,9 +34,9 @@ class PetsModel extends CI_Model
         'ownerID' => $this->session->user->id,
         'age' => $this->input->post('age'),
         'weight' => $this->input->post('weight'),
-        'breed' => $this->input->post('breed'),
-        'date' => date(DATE_ATOM),
         'postage' => $this->input->post('postage'),
+        'breed' => $this->input->post('breed'),
+        'gender' => $this->input->post('gender'),
         'description' => $this->input->post('description')
     ];
     $this->db->where('id', $id);
