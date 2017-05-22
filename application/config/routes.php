@@ -68,6 +68,8 @@ $route['do_upload'] = 'uploadController/do_upload/';
 $route['contato'] = 'mainController/contact/';
 $route['sobre'] = 'mainController/about/';
 $route['adote'] = 'mainController/getAllPets/';
+$route['adote-rest'] = 'restController/getAllPets_get/';
+$route['rest'] = 'restController/index_get/';
 $route['pet/(:num)/mostrar'] = 'mainController/getPetByID/$1';
 //PetsController
 $route['meus-pets'] = 'petsController/getByUser/';

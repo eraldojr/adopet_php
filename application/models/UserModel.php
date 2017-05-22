@@ -39,7 +39,7 @@ class UserModel extends CI_Model
       return $user;
   }
 
-  public function new()
+  public function create()
   {
     $data = [
         'name' => $this->input->post('name'),
@@ -47,8 +47,8 @@ class UserModel extends CI_Model
         'phone' => $this->input->post('phone'),
         'level' => 3,
         'pass' => password_hash($this->input->post('pass'), PASSWORD_BCRYPT),
-        'photo' => $this->upload()
     ];
+    $this->upload();
 
     return $this->db->insert($this->tableName, $data);
   }
@@ -61,10 +61,10 @@ class UserModel extends CI_Model
           $email = $this->input->post('email');
         }
 
-        if(!file_exists(__DIR__ . "/../../public/uploads/users/" . $email)){
-          mkdir(__DIR__ . "/../../public/uploads/users/" . $email, 0700);
+        if(!file_exists(DATAPATH . "users/" . $email)){
+          mkdir(DATAPATH . "users/" . $email, 0700);
         }
-        $path = __DIR__ . '/../../public/uploads/users/' . $email;
+        $path = DATAPATH . 'users/' . $email;
         $config['upload_path']          = $path;
         $config['allowed_types']        = 'gif|jpg|png';
         $config['encrypt_name'] = TRUE;
@@ -74,12 +74,8 @@ class UserModel extends CI_Model
 
         $this->load->library('upload', $config);
 
-        if ($this->upload->do_upload('photo'))
-        {
-          $data =  array('upload_data' => $this->upload->data());
-          $file_name =  $data['upload_data']['file_name'];
-
-          return $file_name;
+        if(!$this->upload->do_upload('photo')){
+          //Tratar erro no carregamento da imagem
         }
   }
 
@@ -102,19 +98,19 @@ class UserModel extends CI_Model
 
   public function changePhoto(){
     $this->load->helper('url');
-
-    $email = $this->session->user->email;
-    if(isset($this->session->user->photo)){
-      $photo = $this->session->user->photo;
-      unlink(FCPATH .  'uploads/users/' . $email . '/' . $photo);
+    if(isset($this->session->user)){
+      $email = $this->session->user->email;
     }
+    $directory = DATAPATH . "users/" . $email;
 
-    $id = $this->session->user->id;
-    $data = [
-      'photo' => $this->upload()
-    ];
-    $this->db->where('id', $id);
-    return $this->db->update($this->tableName, $data);
-
+    if(!file_exists($directory)){
+      mkdir($directory, 0700);
+    }else{
+      $data = scandir($directory);
+      if(isset($data[2])){
+          unlink($directory .  '/' . $data[2]);
+      }
+    }
+    $this->upload();
   }
 }

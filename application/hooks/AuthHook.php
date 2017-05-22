@@ -7,11 +7,12 @@ class AuthHook
     '',
     'sobre',
     'contato',
-    'registro',
+    #'registro',
     'login',
     'logout',
     'nao-logado',
     'adote',
+    'adote-rest',
     'pet/(:num)/mostrar'
   ];
 
@@ -33,7 +34,7 @@ class AuthHook
       redirect(base_url('nao-logado'));
     }
   }
-  private function verify($route){
+  private function verify($route, $action){
     return ((in_array($route, $this->controller)) || ($route == "pet" && $action == "mostrar"));
   }
 

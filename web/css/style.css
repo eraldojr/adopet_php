@@ -1,0 +1,89 @@
+.navbar-brand{
+  padding-top: 0px;
+  height: 50px;
+}
+body{
+  font-family: SourceSansPro;
+}
+@font-face {
+    font-family: SourceSansPro;
+    src: url(../fonts/SourceSansPro/SourceSansPro-Regular.ttf);
+}
+.espaco{
+  height: 20px;
+
+}
+.espaco-2x{
+  height: 40px;
+
+}
+.navbar li:hover{
+  background: gray;
+}
+.fileUpload {
+    position: relative;
+    overflow: hidden;
+    margin: 10px;
+}
+.fileUpload input.uploadPhoto {
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 0;
+    padding: 0;
+    font-size: 20px;
+    cursor: pointer;
+    opacity: 0;
+    filter: alpha(opacity=0);
+}
+.img-deco{
+  box-shadow: 5px 5px 15px darkseagreen, -5px -5px 15px darkseagreen;
+}
+.img-deco:hover{
+  box-shadow: 5px 5px 15px darkslategray, -5px -5px 15px darkslategray;
+}
+
+table{
+  font-size: 25px;
+}
+.itemTable{
+  margin-top: 25px;
+}
+.itemTable a{
+  margin-top: 25px;
+
+  text-decoration: none;
+  color: darkgray;
+}
+.itemTable2{
+  text-align: right;
+}
+.itemTable a:hover{
+  color: green;
+}
+#linkNewPet{
+  text-align: right;
+  text-decoration: none;
+  color: darkgray;
+}
+#linkNewPet:hover{
+  text-align: right;
+  text-decoration: none;
+  color: green;
+}
+.itemPersonalPage{
+  text-align: center;
+  text-decoration: none;
+  color: darkslategray;
+}
+.itemPersonalPage:hover{
+  color: darkgreen;
+  text-decoration: none;
+}
+.imgPets{
+  margin: 20px;
+    box-shadow: 1px 1px 15px gray, -1px -1px 15px gray;
+}
+ img.imgPets:hover{
+  width: 400px;
+}

@@ -7,6 +7,7 @@ class MainController extends CI_Controller
 	{
 			parent::__construct();
 			$this->load->library('session');
+			$this->load->helper('url');
 	}
 
 	public function index()
@@ -29,11 +30,12 @@ class MainController extends CI_Controller
 	}
 	public function getAllPets()
 	{
+		$data=null;
 		$this->load->model('petsModel');
 		$result = $this->petsModel->getAll();
     foreach ($result as $pet) {
-      $directory = FCPATH . 'uploads/pets/' . $pet->id;
-      $data[$pet->id]= scandir($directory);
+      $directory = DATAPATH . 'pets/' . $pet->id;
+      $data[$pet->id]['photos']= scandir($directory);
     }
     $this->load->view('header');
     $this->load->view('main/adopt', ['pets' => $result, 'data'=>$data]);
@@ -44,8 +46,8 @@ class MainController extends CI_Controller
 		//Pet
 		$this->load->model('petsModel');
 		$pet = $this->petsModel->getByID($id);
-    $directory = FCPATH . 'uploads/pets/' . $id;
-    $data[$pet->id]= scandir($directory);
+    $directory = DATAPATH . 'pets/' . $id;
+    $data[$pet->id]['photos'] = scandir($directory);
 		//Owner
 		$this->load->model('userModel');
 		$result = $this->userModel->getByID($pet->ownerID);
@@ -55,7 +57,7 @@ class MainController extends CI_Controller
 			'phone' => $result->phone
 		];
     $this->load->view('header');
-    $this->load->view('main/show', ['pet' => $pet, 'owner' => $owner, 'data'=>$data]);
+    $this->load->view('pets/show-pet', ['pet' => $pet, 'owner' => $owner, 'data'=>$data]);
     $this->load->view('footer');
 	}
 }

@@ -75,9 +75,9 @@ $query_builder = TRUE;
 
 $db['default'] = array(
 	'dsn'	=> '',
-	'hostname' => 'localhost',
+	'hostname' => 'adopet.mysql.uhserver.com',
 	'username' => 'jrfx',
-	'password' => '',
+	'password' => 'mC85ujkIu*+0',
 	'database' => 'adopet',
 	'dbdriver' => 'mysqli',
 	'dbprefix' => '',

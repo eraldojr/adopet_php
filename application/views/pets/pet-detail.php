@@ -88,10 +88,10 @@ if (!isset($pet)) {
         <div class="row">
           <?php for ($i=2; $i < 5; $i++):?>
            <div class="col-md-4">
-             <?php if(isset($data['directory_tree'][$i])): ?>
-               <img src="<?php echo base_url('/uploads/pets/' . $pet->id . '/'  .  $data['directory_tree'][$i] ) ?>" class="center-block img-responsive img-thumbnail img-deco" width="300px" alt="Imagens do pet">
+             <?php if(isset($data[$pet->id]['photos'][$i])): ?>
+               <img src="<?php echo DATAPATH . 'pets/' . $pet->id . '/' . $data[$pet->id]['photos'][$i] ?>" class="center-block img-responsive img-thumbnail img-deco" width="300px" alt="Imagens do pet">
              <?php else: ?>
-               <a href="#" data-toggle="modal" data-target="#modalPhoto"><img src="<?php echo base_url('/uploads/pets/pets.png') ?>" class="center-block img-responsive img-thumbnail img-deco" width="300px" alt="Imagens do pet"></a>
+               <a href="#" data-toggle="modal" data-target="#modalPhoto"><img src="<?php echo base_url('img/pets/pets.png') ?>" class="center-block img-responsive img-thumbnail img-deco" width="300px" alt="Imagens do pet"></a>
              <?php endif ?>
           </div>
         <?php endfor ?>

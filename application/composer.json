@@ -1,0 +1,14 @@
+{
+    "name": "adopet/adopet",
+    "authors": [
+        {
+            "name": "Junior",
+            "email": "eraldogoncalvesjr@gmail.com"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {
+        "php":">=7.1",
+        "mashape/unirest-php": "3.*"
+    }
+}

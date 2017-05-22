@@ -44,8 +44,8 @@ class PetsModel extends CI_Model
   }
 
   public function delete($id){
-    $path= FCPATH . 'uploads/pets/' . $id;
-    if(file_exists(__DIR__ . "/../../public/uploads/pets/" . $id)){
+    $path = DATAPATH . 'pets/' . $id;
+    if(file_exists($path)){
     $data = scandir($path);
     for ($i=2; $i < 5; $i++){
        if(isset($data[$i]))
@@ -74,7 +74,7 @@ class PetsModel extends CI_Model
 
   public function uploadPhoto($id)
   {
-    $config['upload_path']          = __DIR__ . '/../../public/uploads/pets/' . $id;
+    $config['upload_path']          = DATAPATH . 'pets/' . $id;
     $config['allowed_types']        = 'gif|jpg|png';
     $config['encrypt_name'] = TRUE;
     $config['max_size']  = 'none';
@@ -86,17 +86,20 @@ class PetsModel extends CI_Model
     }else{
       $this->load->library('upload', $config);
     }
-    $this->upload->do_upload('photo');
+    if(!$this->upload->do_upload('photo')){
+      echo "Erro ao carregar foto";
+    }
   }
 
   public function upload($id)
   {
 
-    if(!file_exists(__DIR__ . "/../../public/uploads/pets/" . $id)){
-      mkdir(__DIR__ . "/../../public/uploads/pets/" . $id, 0700);
+    $path = DATAPATH . "pets/" . $id;
+    if(!file_exists($path)){
+      mkdir($path, 0700);
     }
 
-    $config['upload_path']          = __DIR__ . '/../../public/uploads/pets/' . $id;
+    $config['upload_path']          = $path;
     $config['allowed_types']        = 'gif|jpg|png';
     $config['encrypt_name'] = TRUE;
     $config['max_size']  = 'none';

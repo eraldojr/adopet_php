@@ -12,8 +12,12 @@ class PetsController extends CI_Controller
 
   public function getByID($id)
   {
-    $directory = FCPATH . 'uploads/pets/' . $id;
-    $data['directory_tree'] = scandir($directory);
+    $directory =  DATAPATH . 'pets/' . $id;
+    if(file_exists($directory)){
+      $data[$id]['photos'] = scandir($directory);
+    }else{
+      $data[$id]['photos'] = null;
+    }
     $result = $this->petsModel->getByID($id);
     $this->load->view('header');
     $this->load->view('pets/pet-detail', ['pet' => $result, 'data'=>$data]);
@@ -22,10 +26,15 @@ class PetsController extends CI_Controller
 
   public function getByUser()
   {
+    $data = null;
     $result = $this->petsModel->getByUser();
     foreach ($result as $pet) {
-      $directory = FCPATH . 'uploads/pets/' . $pet->id;
-      $data[$pet->id]= scandir($directory);
+      $directory =  DATAPATH . 'pets/' . $pet->id;
+      if(file_exists($directory)){
+        $data[$pet->id]['photos'] = scandir($directory);
+      }else{
+        $data[$pet->id]['photos'] = null;
+      }
     }
     $this->load->view('header');
     $this->load->view('pets/my-pets', ['pets' => $result, 'data'=>$data]);
