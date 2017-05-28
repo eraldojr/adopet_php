@@ -2,6 +2,9 @@
 /**
  * CodeIgniter*/
 chdir(dirname(__DIR__));
+
+$abspath = '/var/www/html/adopet.net.br/';
+
  /*
  *
  * An open source application development framework for PHP
@@ -57,6 +60,7 @@ chdir(dirname(__DIR__));
  */
 	define('ENVIRONMENT', isset($_SERVER['CI_ENV']) ? $_SERVER['CI_ENV'] : 'development');
 
+
 /*
  *---------------------------------------------------------------
  * ERROR REPORTING
@@ -99,7 +103,11 @@ switch (ENVIRONMENT)
  * This variable must contain the name of your "system" directory.
  * Set the path if it is not in the same directory as this file.
  */
-	$system_path = 'system';
+
+
+ $system_path = $abspath . 'system';
+
+
 
 /*
  *---------------------------------------------------------------
@@ -116,7 +124,7 @@ switch (ENVIRONMENT)
  *
  * NO TRAILING SLASH!
  */
-	$application_folder = 'application';
+	$application_folder = $abspath . 'application';
 
 /*
  *---------------------------------------------------------------
@@ -217,6 +225,7 @@ switch (ENVIRONMENT)
 	{
 		header('HTTP/1.1 503 Service Unavailable.', TRUE, 503);
 		echo 'Your system folder path does not appear to be set correctly. Please open the following file and correct this: '.pathinfo(__FILE__, PATHINFO_BASENAME);
+    echo "<br> PATH GIVEN: " . $system_path;
 		exit(3); // EXIT_CONFIG
 	}
 
@@ -236,6 +245,8 @@ switch (ENVIRONMENT)
 
 	// Name of the "system" directory
 	define('SYSDIR', basename(BASEPATH));
+
+
 
 	// The path to the "application" directory
 	if (is_dir($application_folder))
@@ -265,6 +276,7 @@ switch (ENVIRONMENT)
 	{
 		header('HTTP/1.1 503 Service Unavailable.', TRUE, 503);
 		echo 'Your application folder path does not appear to be set correctly. Please open the following file and correct this: '.SELF;
+    echo "<br> PATH GIVEN: " . $application_folder;
 		exit(3); // EXIT_CONFIG
 	}
 
@@ -301,7 +313,7 @@ switch (ENVIRONMENT)
 	else
 	{
 		header('HTTP/1.1 503 Service Unavailable.', TRUE, 503);
-		echo 'Your view folder path does not appear to be set correctly. Please open the following file and correct this: '.SELF;
+		echo '3Your view folder path does not appear to be set correctly. Please open the following file and correct this: '.SELF;
 		exit(3); // EXIT_CONFIG
 	}
 

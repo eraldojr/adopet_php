@@ -475,7 +475,7 @@ abstract class REST_Controller extends CI_Controller {
         $this->request->body = NULL;
 
         $this->{'_parse_' . $this->request->method}();
-        
+
         // Fix parse method return arguments null
         if($this->{'_'.$this->request->method.'_args'} === null)
         {
@@ -656,8 +656,8 @@ abstract class REST_Controller extends CI_Controller {
             {
                 $this->_log_request();
             }
-            
-            // fix cross site to option request error 
+
+            // fix cross site to option request error
             if($this->request->method == 'options') {
                 exit;
             }

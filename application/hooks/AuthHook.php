@@ -7,13 +7,21 @@ class AuthHook
     '',
     'sobre',
     'contato',
-    #'registro',
+    'registro',
     'login',
     'logout',
     'nao-logado',
     'adote',
     'adote-rest',
+    'rest',
+    'adote-api',
+    'login-api',
     'pet/(:num)/mostrar'
+  ];
+  private $routes = [
+    'meus-pets-api',
+    'pet',
+    'pet-api'
   ];
 
   public function check()
@@ -35,7 +43,14 @@ class AuthHook
     }
   }
   private function verify($route, $action){
-    return ((in_array($route, $this->controller)) || ($route == "pet" && $action == "mostrar"));
+    if(!in_array($route, $this->controller)){
+      if((in_array($route, $this->routes) && $action == 'mostrar') || $route == $this->routes[0]){
+          return true;
+      }
+      return false;
+    }else{
+      return true;
+    }
   }
 
 }

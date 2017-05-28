@@ -28,9 +28,9 @@ function setFileNameCreate(id){
   if(id == "photo1"){
     _id = "uploadFileName1";
   }else if(id == "photo2"){
-    _id = "uploadFileName1";
+    _id = "uploadFileName2";
   }else if(id == "photo3"){
-    _id = "uploadFileName1";
+    _id = "uploadFileName3";
   }
   document.getElementById(_id).value = elem.value;
 }

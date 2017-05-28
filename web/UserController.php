@@ -56,7 +56,7 @@ class UserController extends CI_Controller
           if($user){
             $this->session->set_userdata(['user' => $user]);
 
-            redirect(base_url('/minha-pagina'));
+            redirect('/minha-pagina');
             return;
           }
           redirect(base_url('/'));

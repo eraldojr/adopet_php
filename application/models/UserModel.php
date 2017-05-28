@@ -10,11 +10,13 @@ class UserModel extends CI_Model
       parent::__construct();
       $this->load->database();
   }
-  public function getByEmail()
+  public function getByEmail($email = null)
   {
+    if($email == null){
       $email = $this->input->post('email');
-      $query = $this->db->get_where($this->tableName, array('email' => $email));
-      return $query->first_row();
+    }
+    $query = $this->db->get_where($this->tableName, array('email' => $email));
+    return $query->first_row();
   }
 
   public function getByID($id){
@@ -22,16 +24,20 @@ class UserModel extends CI_Model
     return $query->first_row();
   }
 
-  public function getByEmailAndPassword()
+  public function getByEmailAndPassword($email = null, $pass = null)
   {
-      $user = $this->getByEmail();
-      if(!$user){
-        return false;
+
+      if($email == null){
+        $user = $this->getByEmail();
+
+        if(!$user){
+          return false;
+        }
+        $pass = $this->input->post('pass');
+      }else{
+          $user = $this->getByEmail($email);
       }
-
-      $pass = $this->input->post('pass');
       $hash = $user->pass;
-
       if (!password_verify($pass, $hash)) {
           return false;
       }

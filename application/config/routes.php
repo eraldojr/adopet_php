@@ -51,6 +51,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 */
 $route['default_controller'] = 'mainController';
 $route['404_override'] = 'ErrorPages';
+$route['404'] = 'ErrorPages';
 $route['translate_uri_dashes'] = FALSE;
 //UserController
 $route['login'] = 'userController/login/';
@@ -68,9 +69,12 @@ $route['do_upload'] = 'uploadController/do_upload/';
 $route['contato'] = 'mainController/contact/';
 $route['sobre'] = 'mainController/about/';
 $route['adote'] = 'mainController/getAllPets/';
-$route['adote-rest'] = 'restController/getAllPets_get/';
-$route['rest'] = 'restController/index_get/';
 $route['pet/(:num)/mostrar'] = 'mainController/getPetByID/$1';
+//RestController
+$route['adote-api'] = 'restController/getAllPets';
+//$route['pet-api/(:num)/mostrar'] = 'restController/getPetByID/$1';
+//$route['meus-pets-api/(:num)'] = 'restController/getPetByUser/$1';
+$route['login-api'] = 'restController/doLogin';
 //PetsController
 $route['meus-pets'] = 'petsController/getByUser/';
 $route['novo-pet'] = 'petsController/create/';
