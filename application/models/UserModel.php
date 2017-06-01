@@ -45,18 +45,20 @@ class UserModel extends CI_Model
       return $user;
   }
 
-  public function create()
+  public function create($data = null)
   {
-    $data = [
+    if($data==null){
+      $data = [
         'name' => $this->input->post('name'),
         'email' => $this->input->post('email'),
         'phone' => $this->input->post('phone'),
         'level' => 3,
         'pass' => password_hash($this->input->post('pass'), PASSWORD_BCRYPT),
-    ];
-    $this->upload();
-
+      ];
+      $this->upload();
+    }
     return $this->db->insert($this->tableName, $data);
+
   }
 
   public function upload()

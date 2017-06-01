@@ -3,7 +3,7 @@
 class AuthHook
 {
 
-  private $controller = [
+  private $routes = [
     '',
     'sobre',
     'contato',
@@ -15,14 +15,14 @@ class AuthHook
     'adote-rest',
     'rest',
     'adote-api',
+    'registro-api',
+    'verifica-email-api',
     'login-api',
-    'pet/(:num)/mostrar'
-  ];
-  private $routes = [
+    'pet/(:num)/mostrar',
     'meus-pets-api',
-    'pet',
     'pet-api'
   ];
+
 
   public function check()
   {
@@ -36,21 +36,18 @@ class AuthHook
 
     $user = $CI->session->user ?? null;
     $route = $CI->uri->segment(1);
-    $action = $CI->uri->segment(3);
-    if(!$user and !$this->verify($route, $action))
+
+    if(!$user and !$this->verify($route))
     {
       redirect(base_url('nao-logado'));
     }
   }
-  private function verify($route, $action){
-    if(!in_array($route, $this->controller)){
-      if((in_array($route, $this->routes) && $action == 'mostrar') || $route == $this->routes[0]){
-          return true;
-      }
-      return false;
+
+  function verify($route){
+    if(in_array($route, $this->routes)){
+      return true;
     }else{
       return true;
     }
   }
-
 }

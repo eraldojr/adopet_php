@@ -10,26 +10,29 @@ class PetsModel extends CI_Model
     $this->load->database();
   }
 
-  public function create(){
+  public function create($data = null){
 
-    $data = [
-        'name' => $this->input->post('name'),
-        'ownerID' => $this->session->user->id,
-        'age' => $this->input->post('age'),
-        'weight' => $this->input->post('weight'),
-        'postage' => $this->input->post('postage'),
-        'breed' => $this->input->post('breed'),
-        'gender' => $this->input->post('gender'),
-        'description' => $this->input->post('description'),
-        'date' => date(DATE_ATOM)
-    ];
+    if($data === null){
+      $data = [
+          'name' => $this->input->post('name'),
+          'ownerID' => $this->session->user->id,
+          'age' => $this->input->post('age'),
+          'weight' => $this->input->post('weight'),
+          'postage' => $this->input->post('postage'),
+          'breed' => $this->input->post('breed'),
+          'gender' => $this->input->post('gender'),
+          'description' => $this->input->post('description'),
+          'date' => date(DATE_ATOM)
+      ];
+    }
     $this->db->insert($this->tableName, $data);
     $id = $this->db->insert_id();
     $this->upload($id);
   }
 
-  public function update($id){
-    $data = [
+  public function update($id, $data = null){
+    if($data == null){
+      $data = [
         'name' => $this->input->post('name'),
         'ownerID' => $this->session->user->id,
         'age' => $this->input->post('age'),
@@ -38,7 +41,8 @@ class PetsModel extends CI_Model
         'breed' => $this->input->post('breed'),
         'gender' => $this->input->post('gender'),
         'description' => $this->input->post('description')
-    ];
+      ];
+    }
     $this->db->where('id', $id);
     return $this->db->update($this->tableName, $data);
   }
@@ -61,8 +65,10 @@ class PetsModel extends CI_Model
     return $query->result();
   }
 
-  public function getByUser(){
-    $ownerID = $this->session->user->id;
+  public function getByUser($ownerID = null){
+    if($ownerID ==null){
+      $ownerID = $this->session->user->id;
+    }
     $query = $this->db->get_where($this->tableName, ['ownerID'=>$ownerID]);
     return $query->result();
   }

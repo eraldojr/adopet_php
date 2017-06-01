@@ -70,11 +70,18 @@ $route['contato'] = 'mainController/contact/';
 $route['sobre'] = 'mainController/about/';
 $route['adote'] = 'mainController/getAllPets/';
 $route['pet/(:num)/mostrar'] = 'mainController/getPetByID/$1';
-//RestController
-$route['adote-api'] = 'restController/getAllPets';
-//$route['pet-api/(:num)/mostrar'] = 'restController/getPetByID/$1';
-//$route['meus-pets-api/(:num)'] = 'restController/getPetByUser/$1';
-$route['login-api'] = 'restController/doLogin';
+//RestControllers
+//::::User
+$route['registro-api'] = 'userRestful/createUser';
+$route['login-api'] = 'userRestful/doLogin';
+$route['verifica-email-api'] = 'userRestful/verifyEmail';
+//::::Pets
+$route['adote-api'] = 'petsRestful/getAllPets';
+$route['pet-api/novo'] = 'petsRestful/createPet';
+$route['pet-api/(:num)/editar'] = 'petsRestful/updatePet/$1';
+$route['pet-api/(:num)/excluir'] = 'petsRestful/deletePet/$1';
+$route['pet-api/(:num)/mostrar'] = 'petsRestful/getPetByID/$1';
+$route['meus-pets-api/(:num)'] = 'petsRestful/getPetsByUser/$1';
 //PetsController
 $route['meus-pets'] = 'petsController/getByUser/';
 $route['novo-pet'] = 'petsController/create/';
