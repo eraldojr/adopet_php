@@ -82,6 +82,7 @@ $route['pet-api/(:num)/editar'] = 'petsRestful/updatePet/$1';
 $route['pet-api/(:num)/excluir'] = 'petsRestful/deletePet/$1';
 $route['pet-api/(:num)/mostrar'] = 'petsRestful/getPetByID/$1';
 $route['meus-pets-api/(:num)'] = 'petsRestful/getPetsByUser/$1';
+#$route['meus-pets-api/(:num)'] = 'petsRestful/getPetsByUser/$1';
 //PetsController
 $route['meus-pets'] = 'petsController/getByUser/';
 $route['novo-pet'] = 'petsController/create/';
